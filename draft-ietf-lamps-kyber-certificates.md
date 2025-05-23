@@ -266,7 +266,7 @@ in {{priv-key}}.
 
 When the ML-KEM private key appears outside of an Asymmetric Key Package
 in an environment that uses ASN.1 encoding, it can be encoded using one
-of the the `ML-KEM-PrivateKey CHOICE` formats defined in {{priv-key}}. The
+of the `ML-KEM-PrivateKey CHOICE` formats defined in {{priv-key}}. The
 `seed` format is RECOMMENDED as it efficiently stores both the private and
 public key.
 
@@ -389,8 +389,11 @@ of these three formats may be used, though the `seed` format is RECOMMENDED
 for storage efficiency.
 
 The `privateKeyAlgorithm` field uses the `AlgorithmIdentifier` structure
-with the appropriate OID as defined in {{oids}}. If present, the `publicKey`
-field will hold the encoded public key as defined in {{pub-key}}.
+with the appropriate OID as defined in {{oids}}.
+
+The publicKey field contains the byte stream of the public key. If
+present, the `publicKey` field will hold the encoded public key as
+defined in {{pub-key}}.
 
 NOTE: While the private key can be stored in multiple formats, the seed-only
 format is RECOMMENDED as it is the most compact representation. Both the
@@ -420,7 +423,7 @@ To support serialization of seed values as private keys, let Algorithm 19b denot
 
 Note also that unlike other private key compression methods in other algorithms, expanding a private key from a seed is a one-way function, meaning that once a full key is expanded from seed and the seed discarded, the seed cannot be re-created even if the full expanded private key is available. For this reason it is RECOMMENDED that implementations retain and export the seed, even when also exporting the expanded private key.
 
-# Private Key Consistency Tesing
+# Private Key Consistency Testing
 
 When receiving a private key that contains both the seed and the
 expandedKey, the recipient SHOULD perform a seed consistency check to
