@@ -277,8 +277,8 @@ encoded using the textual encoding defined in {{?RFC7468}}.
 
 The intended application for the key is indicated in the keyUsage certificate
 extension; see {{Section 4.2.1.3 of RFC5280}}. If the `keyUsage` extension is
-present in a certificate that indicates `id-alg-ml-kem-*` in the `SubjectPublicKeyInfo`,
-then `keyEncipherment` MUST be the only key usage set.
+present, then `keyEncipherement` MUST be the only key usage set for
+certificates that indicate `id-alg-ml-kem-*` in `SubjectPublicKeyInfo`.
 
 # Private Key Format {#priv-key}
 
@@ -458,9 +458,6 @@ Protection of the private-key information, i.e., the seed, is vital to
 public-key cryptography.  Disclosure of the private-key material to another
 entity can lead to masquerades.
 
-For ML-KEM specific security considerations refer to
-{{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
-
 The generation of private keys relies on random numbers. The use of
 inadequate pseudo-random number generators (PRNGs) to generate these
 values can result in little or no security.  An attacker may find it
@@ -484,6 +481,9 @@ but not MAL-BIND-K-CT nor MAL-BIND-K-PK.
 Using the 64-byte seed format provides a step up in binding security,
 additionally providing MAL-BIND-K-CT security, but still not MAL-BIND-K-PK.
 For more guidance, see {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
+
+For more detailed ML-KEM specific security considerations refer to
+{{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
 # IANA Considerations
 
