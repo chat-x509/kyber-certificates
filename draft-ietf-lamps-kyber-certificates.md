@@ -277,7 +277,7 @@ encoded using the textual encoding defined in {{?RFC7468}}.
 
 The intended application for the key is indicated in the keyUsage certificate
 extension; see {{Section 4.2.1.3 of RFC5280}}. If the `keyUsage` extension is
-present, then `keyEncipherement` MUST be the only key usage set for
+present in certificates, then `keyEncipherement` MUST be the only key usage set for
 certificates that indicate `id-alg-ml-kem-*` in `SubjectPublicKeyInfo`.
 
 # Private Key Format {#priv-key}
