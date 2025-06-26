@@ -483,7 +483,7 @@ additionally providing MAL-BIND-K-CT security, but still not MAL-BIND-K-PK.
 For more guidance, see {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
 For more detailed ML-KEM specific security considerations refer to
-{{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
+regarding randmoness, misbinding properies, decapsulation failures, key reuse, and key checks, refer to {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
 # IANA Considerations
 
