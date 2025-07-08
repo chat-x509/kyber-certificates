@@ -112,9 +112,9 @@ informative:
 
 The Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM) is a
 quantum-resistant key-encapsulation mechanism (KEM). This document
-describes the conventions for using the ML-KEM in X.509 Public Key
+specifies the conventions for using the ML-KEM in X.509 Public Key
 Infrastructure. The conventions for the subject public keys and
-private keys are also described.
+private keys are also specified.
 
 --- middle
 
