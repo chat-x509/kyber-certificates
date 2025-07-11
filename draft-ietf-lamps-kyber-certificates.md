@@ -137,7 +137,7 @@ ML-KEM certificates are used in protocols where the public key is used to
 generate and encapsulate a shared secret used to derive a symmetric key used
 to encrypt a payload; see {{?I-D.ietf-lamps-cms-kyber}}. To be used in TLS,
 ML-KEM certificates could only be used as end-entity identity certificates
-and would require significant updates to the protocol; see
+and would require significant updates to the protocol; see, for example,
 {{?I-D.celi-wiggers-tls-authkem}}.
 
 # Conventions and Definitions
@@ -256,7 +256,7 @@ The `PUBLIC-KEY` ASN.1 type for ML-KEM are defined here:
 When an ML-KEM public key appears outside of a `SubjectPublicKeyInfo`
 type in an environment that uses ASN.1 encoding, it can be encoded
 as an OCTET STRING by using the `ML-KEM-512-PublicKey`,
-`ML-KEM-768-PublicKey`, `ML-KEM-1024-PublicKey` types corresponding to
+`ML-KEM-768-PublicKey`, and `ML-KEM-1024-PublicKey` types corresponding to
 the correct key size.
 
 {{!RFC5958}} describes the Asymmetric Key Package's `OneAsymmetricKey`
@@ -330,7 +330,7 @@ key to be included as well. For illustration, the ASN.1 structure
 
 For ML-KEM private keys, the privateKey field in `OneAsymmetricKey` contains
 one of the following DER-encoded `CHOICE` structures. The `seed`
-format is a fixed 64 byte `OCTET STRING` (66 bytes total with the `0x8040`
+format is a fixed 64-byte `OCTET STRING` (66 bytes total with the `0x8040`
 tag and length) for all security levels, while the `expandedKey`
 and `both` formats vary in size by security level:
 
@@ -524,8 +524,8 @@ Levels 2 and 4 use collision search for SHA-256 and SHA-384 as reference.
 | Level | Parameter Set | Encap. Key | Decap. Key | Ciphertext | Secret |
 |-      |-              |-           |-           |-           |-       |
 | 1     | ML-KEM-512    | 800        | 1632       | 768        | 32     |
-| 3     | ML-KEM-768    | 1184       | 2400       | 1952       | 32     |
-| 5     | ML-KEM-1024   | 1568       | 3168       | 2592       | 32     |
+| 3     | ML-KEM-768    | 1184       | 2400       | 1088       | 32     |
+| 5     | ML-KEM-1024   | 1568       | 3168       | 1568       | 32     |
 {: #tab-strengths title="Mapping between NIST Security Level, ML-KEM parameter set, and sizes in bytes"}
 
 # Examples {#examples}
