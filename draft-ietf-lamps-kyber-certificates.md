@@ -202,11 +202,6 @@ In the X.509 certificate, the `subjectPublicKeyInfo` field has the
   }
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
-
 The fields in `SubjectPublicKeyInfo` have the following meaning:
 
 * `algorithm` is the algorithm identifier and parameters for the
@@ -247,11 +242,6 @@ The `PUBLIC-KEY` ASN.1 type for ML-KEM are defined here:
 
   ML-KEM-1024-PublicKey ::= OCTET STRING (SIZE (1568))
 ~~~
-
-<aside markdown="block">
-  NOTE: The above syntax is from {{!RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
 
 When an ML-KEM public key appears outside of a `SubjectPublicKeyInfo`
 type in an environment that uses ASN.1 encoding, it can be encoded
@@ -324,11 +314,6 @@ key to be included as well. For illustration, the ASN.1 structure
   }
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{RFC5958}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}.
-</aside>
-
 For ML-KEM private keys, the privateKey field in `OneAsymmetricKey` contains
 one of the following DER-encoded `CHOICE` structures. The `seed`
 format is a fixed 64-byte `OCTET STRING` (66 bytes total with the `0x8040`
@@ -363,11 +348,6 @@ and `both` formats vary in size by security level:
       }
     }
 ~~~
-
-<aside markdown="block">
-  NOTE: The above syntax is from {{!RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
 
 The `CHOICE` allows three representations of the private key:
 
