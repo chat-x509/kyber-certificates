@@ -480,10 +480,10 @@ LEAK-BIND-K-CT-secure when using the expanded private key format,
 but not MAL-BIND-K-CT nor MAL-BIND-K-PK.
 Using the 64-byte seed format provides a step up in binding security,
 additionally providing MAL-BIND-K-CT security, but still not MAL-BIND-K-PK.
-For more guidance, see {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
-For more detailed ML-KEM specific security considerations refer to
-regarding randmoness, misbinding properies, decapsulation failures, key reuse, and key checks, refer to {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
+For more detailed ML-KEM specific security considerations regarding this,
+randomness, misbinding properties, decapsulation failures, key reuse, and
+key checks, refer to {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
 # IANA Considerations
 
