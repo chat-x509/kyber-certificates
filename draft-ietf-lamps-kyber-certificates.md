@@ -44,7 +44,7 @@ author:
     organization: AWS
     email: jakemas@amazon.com
  -
-    ins: B. Westerbaan
+    ins: B.E. Westerbaan
     name: Bas Westerbaan
     organization: Cloudflare
     email: bas@westerbaan.name
