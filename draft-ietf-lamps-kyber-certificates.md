@@ -446,9 +446,8 @@ force searching the whole key space.  The generation of quality
 random numbers is difficult, and {{?RFC4086}} offers important guidance
 in this area.
 
-ML-KEM key generation as standardized in {{FIPS203}} has specific
-requirements around randomness generation, described in section 3.3,
-'Randomness generation'.
+ML-KEM key generation has specific requirements around randomness generation
+as described in section 3.3 of {{FIPS203}}.
 
 Many protocols only rely on the IND-CCA security of a KEM. Some
 (implicitly) require further binding properties, formalized
