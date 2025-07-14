@@ -384,10 +384,6 @@ expanded private key and public key can be derived using
 for interoperability; some may want to use and retain the seed and
 others may only support expanded private keys.
 
-When encoding an ML-KEM private key in a `OneAsymmetricKey` object, any
-of these three formats may be used, though the `seed` format is RECOMMENDED
-for storage efficiency.
-
 The `privateKeyAlgorithm` field uses the `AlgorithmIdentifier` structure
 with the appropriate OID as defined in {{oids}}.
 
@@ -400,7 +396,8 @@ format is RECOMMENDED as it is the most compact representation. Both the
 expanded private key and the public key can be deterministically derived
 from the seed using `ML-KEM.KeyGen_internal(d,z)` (algorithm 16) using the
 first 32 octets as *d* and the remaining 32 octets as *z*.  Alternatively,
-the public key can be extracted from the extended private key. While the `publicKey` field and
+the public key can be extracted from the expanded private key. While
+the `publicKey` field and
 `expandedKey` format are technically redundant when using the seed-only format,
 they MAY be included to enable keypair consistency checks during import operations.
 
