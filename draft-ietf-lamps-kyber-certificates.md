@@ -209,7 +209,8 @@ The fields in `SubjectPublicKeyInfo` have the following meaning:
 
 * `subjectPublicKey` contains the byte stream of the public key.
 
-The `PUBLIC-KEY` ASN.1 type for ML-KEM are defined here:
+For each ML-KEM parameter set, see {{tab-strengths}},
+we define a `PUBLIC-KEY` ASN.1 type as follows.
 
 ~~~
   pk-ml-kem-512 PUBLIC-KEY ::= {
