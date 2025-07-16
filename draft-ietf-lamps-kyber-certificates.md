@@ -202,11 +202,6 @@ In the X.509 certificate, the `subjectPublicKeyInfo` field has the
   }
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
-
 The fields in `SubjectPublicKeyInfo` have the following meaning:
 
 * `algorithm` is the algorithm identifier and parameters for the
@@ -214,7 +209,8 @@ The fields in `SubjectPublicKeyInfo` have the following meaning:
 
 * `subjectPublicKey` contains the byte stream of the public key.
 
-The `PUBLIC-KEY` ASN.1 type for ML-KEM are defined here:
+For each ML-KEM parameter set, see {{tab-strengths}},
+we define a `PUBLIC-KEY` ASN.1 type as follows.
 
 ~~~
   pk-ml-kem-512 PUBLIC-KEY ::= {
@@ -248,11 +244,6 @@ The `PUBLIC-KEY` ASN.1 type for ML-KEM are defined here:
   ML-KEM-1024-PublicKey ::= OCTET STRING (SIZE (1568))
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{!RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
-
 When an ML-KEM public key appears outside of a `SubjectPublicKeyInfo`
 type in an environment that uses ASN.1 encoding, it can be encoded
 as an OCTET STRING by using the `ML-KEM-512-PublicKey`,
@@ -277,8 +268,9 @@ encoded using the textual encoding defined in {{?RFC7468}}.
 
 The intended application for the key is indicated in the keyUsage certificate
 extension; see {{Section 4.2.1.3 of RFC5280}}. If the `keyUsage` extension is
-present in certificates, then `keyEncipherement` MUST be the only key usage set for
-certificates that indicate `id-alg-ml-kem-*` in `SubjectPublicKeyInfo`.
+present in certificates, then `keyEncipherement` MUST be the only key usage set
+for certificates that indicate `id-alg-ml-kem-*` in `SubjectPublicKeyInfo`,
+(with `*` either 512, 768, or 1024.)
 
 # Private Key Format {#priv-key}
 
@@ -323,11 +315,6 @@ key to be included as well. For illustration, the ASN.1 structure
   }
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{RFC5958}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}.
-</aside>
-
 For ML-KEM private keys, the privateKey field in `OneAsymmetricKey` contains
 one of the following DER-encoded `CHOICE` structures. The `seed`
 format is a fixed 64-byte `OCTET STRING` (66 bytes total with the `0x8040`
@@ -363,11 +350,6 @@ and `both` formats vary in size by security level:
     }
 ~~~
 
-<aside markdown="block">
-  NOTE: The above syntax is from {{!RFC5912}} and is compatible with the
-  2021 ASN.1 syntax {{X680}}. See {{RFC5280}} for the 1988 ASN.1 syntax.
-</aside>
-
 The `CHOICE` allows three representations of the private key:
 
 * The `seed` format (tag [0]) contains just the 64-byte seed value
@@ -384,10 +366,6 @@ expanded private key and public key can be derived using
 for interoperability; some may want to use and retain the seed and
 others may only support expanded private keys.
 
-When encoding an ML-KEM private key in a `OneAsymmetricKey` object, any
-of these three formats may be used, though the `seed` format is RECOMMENDED
-for storage efficiency.
-
 The `privateKeyAlgorithm` field uses the `AlgorithmIdentifier` structure
 with the appropriate OID as defined in {{oids}}.
 
@@ -400,7 +378,8 @@ format is RECOMMENDED as it is the most compact representation. Both the
 expanded private key and the public key can be deterministically derived
 from the seed using `ML-KEM.KeyGen_internal(d,z)` (algorithm 16) using the
 first 32 octets as *d* and the remaining 32 octets as *z*.  Alternatively,
-the public key can be extracted from the extended private key. While the `publicKey` field and
+the public key can be extracted from the expanded private key. While
+the `publicKey` field and
 `expandedKey` format are technically redundant when using the seed-only format,
 they MAY be included to enable keypair consistency checks during import operations.
 
@@ -467,9 +446,8 @@ force searching the whole key space.  The generation of quality
 random numbers is difficult, and {{?RFC4086}} offers important guidance
 in this area.
 
-ML-KEM key generation as standardized in {{FIPS203}} has specific
-requirements around randomness generation, described in section 3.3,
-'Randomness generation'.
+ML-KEM key generation has specific requirements around randomness generation
+as described in section 3.3 of {{FIPS203}}.
 
 Many protocols only rely on the IND-CCA security of a KEM. Some
 (implicitly) require further binding properties, formalized
@@ -480,10 +458,10 @@ LEAK-BIND-K-CT-secure when using the expanded private key format,
 but not MAL-BIND-K-CT nor MAL-BIND-K-PK.
 Using the 64-byte seed format provides a step up in binding security,
 additionally providing MAL-BIND-K-CT security, but still not MAL-BIND-K-PK.
-For more guidance, see {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
-For more detailed ML-KEM specific security considerations refer to
-regarding randmoness, misbinding properies, decapsulation failures, key reuse, and key checks, refer to {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
+For more detailed ML-KEM specific security considerations regarding this,
+randomness, misbinding properties, decapsulation failures, key reuse, and
+key checks, refer to {{?I-D.sfluhrer-cfrg-ml-kem-security-considerations}}.
 
 # IANA Considerations
 
